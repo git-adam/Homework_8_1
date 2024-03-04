@@ -1,11 +1,11 @@
-﻿using Homework_8_1.Models.Domains;
+﻿using ReportService.Core.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework_8_1.Models
+namespace ReportService.Core
 {
     public class GenerateHtmlEmail
     {

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5868242F-E50D-4342-B137-0F502BF68370}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Homework_8_1</RootNamespace>
-    <AssemblyName>Homework_8_1</AssemblyName>
+    <ProjectGuid>{29723551-41D0-4D22-87A3-1C3A6D23F25E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ReportService.ConsoleApp</RootNamespace>
+    <AssemblyName>ReportService.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,63 +33,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.5.2.8\lib\net46\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ReportService.Designer.cs">
-      <DependentUpon>ReportService.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportService.resx">
-      <DependentUpon>ReportService.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cipher\Cipher.csproj">
-      <Project>{f6ccd6b8-b85e-42e9-97a4-4b1f3c74fc36}</Project>
+      <Project>{F6CCD6B8-B85E-42E9-97A4-4B1F3C74FC36}</Project>
       <Name>Cipher</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailSender\EmailSender.csproj">
@@ -97,7 +59,7 @@
       <Name>EmailSender</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReportService.Core\ReportService.Core.csproj">
-      <Project>{3634476E-28AC-4EBF-9D54-BC7BDFBD4BC2}</Project>
+      <Project>{3634476e-28ac-4ebf-9d54-bc7bdfbd4bc2}</Project>
       <Name>ReportService.Core</Name>
     </ProjectReference>
   </ItemGroup>
