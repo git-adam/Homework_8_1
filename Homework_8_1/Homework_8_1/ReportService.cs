@@ -15,9 +15,11 @@ namespace Homework_8_1
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private const int SendHour = 8;
-        private const int InternalInMinutes = 1;
-        private Timer _timer = new Timer(InternalInMinutes * 60000);
+        private readonly int _sendHour;
+        private readonly int _intervalInMinutes;
+        private readonly bool _toSendReport;
+        private const int MinuteToMiliSeconds = 60000;
+        private readonly Timer _timer;
         private ErrorRepository _errorRepository = new ErrorRepository();
         private ReportRepository _reportRepository = new ReportRepository();
         private Email _email;
@@ -31,6 +33,12 @@ namespace Homework_8_1
 
             try
             {
+                _sendHour = Convert.ToInt32(ConfigurationManager.AppSettings["SendHour"]);
+                _intervalInMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["IntervalInMinutes"]);
+                _timer = new Timer(_intervalInMinutes * MinuteToMiliSeconds);
+                _toSendReport = Convert.ToBoolean(ConfigurationManager.AppSettings["ToSendReport"]);
+
+
                 _emailReceiver = ConfigurationManager.AppSettings["ReceiverEmail"];
 
                 _email = new Email(new EmailParams
@@ -91,21 +99,24 @@ namespace Homework_8_1
 
         private async Task SendError()
         {
-            var errors = _errorRepository.GetLastErrors(InternalInMinutes);
+            var errors = _errorRepository.GetLastErrors(_intervalInMinutes);
             if (errors == null || !errors.Any())
                 return;
 
             //send Mail
-            await _email.Send("Błędy w aplikacji", _htmlEmail.GenerateErrors(errors, InternalInMinutes), _emailReceiver);
+            await _email.Send("Błędy w aplikacji", _htmlEmail.GenerateErrors(errors, _intervalInMinutes), _emailReceiver);
 
             Logger.Info("Errors sent...");
         }
 
         private async Task SendReport()
         {
+            if (!_toSendReport)
+                return;
+
             var actualHour = DateTime.Now.Hour;
 
-            if (actualHour < SendHour)
+            if (actualHour < _sendHour)
                 return;
             var report = _reportRepository.GetLastNotSentReport();
 
